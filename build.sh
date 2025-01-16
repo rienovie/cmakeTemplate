@@ -1,16 +1,23 @@
 #!/usr/bin/bash
 
-buildDir="build"
+# NOTE: change this when you've set the values below
+directoryAndNameHaveBeenSet=true
 
-# NOTE: make sure to set this
+# NOTE: make sure to set these
+buildDir="build"
 programExec="cMakeTemplate"
+
+if ! $directoryAndNameHaveBeenSet; then
+	echo $'\nPlease set the name of the program and build directory inside build script file.\n'
+	exit 1
+fi
 
 if [ ! -d $buildDir ]; then
 	mkdir $buildDir
-	cd $buildDir
+	cd $buildDir || exit 1
 	cmake ..
 else
-	cd $buildDir
+	cd $buildDir || exit 1
 fi
 
 cmake --build .
