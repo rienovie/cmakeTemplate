@@ -7,6 +7,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # find_package(somePackage REQUIRED)
 
-set(SOURCES main.cpp)
+set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
+
+file(GLOB_RECURSE SOURCES "${SOURCE_DIR}/*.cpp")
 
 add_executable(cMakeTemplate ${SOURCES})
