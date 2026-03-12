@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-# NOTE: make sure to set these
+# NOTE: make sure to set these and modify cMakeLists.txt with updated project name
 buildDir="build"
 programExec="cMakeTemplate"
 directoryAndNameHaveBeenSet=false
@@ -24,6 +24,7 @@ if ! cmake --build .; then
 	exit 1
 fi
 
+# with arg run, attempts to run the program and passes any additional args to it
 if [ $# -gt 0 ] && [ "$1" = "run" ]; then
 	echo "Build complete. Attempting to run $programExec"
 	echo "--- $programExec ---"
@@ -36,7 +37,7 @@ if [ $# -gt 0 ] && [ "$1" = "run" ]; then
 	# make the program run from the root folder
 	cd ..
 
-	./$buildDir/$programExec
+	./$buildDir/$programExec "${@:2}"
 
 else
 	echo "Build complete. For autorun pass 'run' arg to script."
